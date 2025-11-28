@@ -29,47 +29,55 @@ const AIAdvisor: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const apiKey = process.env.API_KEY;
-      if (!apiKey) throw new Error("API Key not found");
+      const apiKey = process.env.API_KEY; 
+      
+      // If no API key is present, we handle it gracefully or log it.
+      if (!apiKey) {
+         console.warn("API Key not found in environment variables");
+      }
 
-      const ai = new GoogleGenAI({ apiKey });
-      
-      // Prepare context from service data
-      const serviceContext = JSON.stringify(SERVICE_DATA);
-      
-      const systemInstruction = `
-        Você é um consultor especialista da R-Car Estética Automotiva.
-        Sua missão é recomendar serviços baseados na descrição do cliente.
-        Seja breve, profissional e entusiasta.
-        Aqui estão nossos serviços e preços (use esses dados para responder):
-        ${serviceContext}
+      // Only attempt to initialize if key exists
+      if (apiKey) {
+        const ai = new GoogleGenAI({ apiKey });
         
-        Regras:
-        1. Se o cliente falar de sujeira pesada, sugira Lavagem Americana ou Completa.
-        2. Se falar de riscos leves ou pintura opaca, sugira Polimento.
-        3. Se falar de farol amarelado, sugira Recuperação de Farol.
-        4. Sempre mencione o preço aproximado.
-        5. Se não tiver certeza, peça para trazer o carro para avaliação ou entrar em contato pelo WhatsApp.
-      `;
+        // Prepare context from service data
+        const serviceContext = JSON.stringify(SERVICE_DATA);
+        
+        const systemInstruction = `
+          Você é um consultor especialista da R-Car Estética Automotiva.
+          Sua missão é recomendar serviços baseados na descrição do cliente.
+          Seja breve, profissional e entusiasta.
+          Aqui estão nossos serviços e preços (use esses dados para responder):
+          ${serviceContext}
+          
+          Regras:
+          1. Se o cliente falar de sujeira pesada, sugira Lavagem Americana ou Completa.
+          2. Se falar de riscos leves ou pintura opaca, sugira Polimento.
+          3. Se falar de farol amarelado, sugira Recuperação de Farol.
+          4. Sempre mencione o preço aproximado.
+          5. Se não tiver certeza, peça para trazer o carro para avaliação ou entrar em contato pelo WhatsApp.
+        `;
 
-      const response = await ai.models.generateContent({
-        model: GeminiModel.FLASH_LITE,
-        contents: [
-          { role: 'user', parts: [{ text: `System Instruction: ${systemInstruction}` }] }, // In older SDKs system instruction is config, here passing as context for safety if 2.5 config differs, but actually 2.5 supports systemInstruction in config. Let's use config properly.
-          ...messages.map(m => ({
-            role: m.role,
-            parts: [{ text: m.text }]
-          })),
-          { role: 'user', parts: [{ text: userMessage }] }
-        ],
-        config: {
-          systemInstruction: systemInstruction,
-        }
-      });
+        const response = await ai.models.generateContent({
+          model: GeminiModel.FLASH_LITE,
+          contents: [
+            { role: 'user', parts: [{ text: `System Instruction: ${systemInstruction}` }] }, 
+            ...messages.map(m => ({
+              role: m.role,
+              parts: [{ text: m.text }]
+            })),
+            { role: 'user', parts: [{ text: userMessage }] }
+          ],
+          config: {
+            systemInstruction: systemInstruction,
+          }
+        });
 
-      const text = response.text || "Desculpe, não consegui processar sua solicitação agora.";
-      
-      setMessages(prev => [...prev, { role: 'model', text }]);
+        const text = response.text || "Desculpe, não consegui processar sua solicitação agora.";
+        setMessages(prev => [...prev, { role: 'model', text }]);
+      } else {
+        setMessages(prev => [...prev, { role: 'model', text: 'Sistema de IA indisponível no momento. Por favor, entre em contato via WhatsApp.', isError: true }]);
+      }
 
     } catch (error) {
       console.error("AI Error:", error);

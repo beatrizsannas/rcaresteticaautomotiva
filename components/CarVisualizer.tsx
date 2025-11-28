@@ -27,7 +27,12 @@ const CarVisualizer: React.FC = () => {
     setIsGenerating(true);
     try {
       const apiKey = process.env.API_KEY;
-      if (!apiKey) throw new Error("API Key missing");
+      
+      if (!apiKey) {
+        console.warn("API Key missing");
+        alert("Configuração de API pendente.");
+        return;
+      }
 
       const ai = new GoogleGenAI({ apiKey });
       
