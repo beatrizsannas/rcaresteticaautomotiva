@@ -36,20 +36,17 @@ const ServiceSection: React.FC = () => {
   };
 
   return (
-    <section id="services" className="py-16 md:py-24 bg-rcar-black relative">
+    <section id="services" className="py-16 bg-rcar-black relative">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="mb-12 text-center">
-          <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-4">
+        <div className="mb-10 text-center">
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-3">
             NOSSOS <span className="text-rcar-neon">SERVIÇOS</span>
           </h2>
-          <div className="w-16 h-1 bg-rcar-neon mx-auto rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></div>
-          <p className="mt-6 text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
-            Selecione uma categoria para visualizar tabelas e valores.
-          </p>
+          <div className="w-12 h-1 bg-rcar-neon mx-auto rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></div>
         </div>
 
-        {/* Robust Grid Layout - 3 Columns on Desktop, 1 on Mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        {/* Layout Minimalista: Grid de 3 colunas com altura fixa e controlada */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {SERVICE_DATA.map((category, index) => (
             <motion.div
               key={category.id}
@@ -61,33 +58,34 @@ const ServiceSection: React.FC = () => {
               onKeyDown={(e) => handleKeyDown(e, category)}
               role="button"
               tabIndex={0}
-              className="group relative w-full aspect-video rounded-xl overflow-hidden cursor-pointer border border-gray-800 hover:border-rcar-neon/60 transition-all duration-300 shadow-lg hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] focus:outline-none focus:ring-2 focus:ring-rcar-neon"
+              // Altura fixa (h-64 = 256px) para garantir uniformidade e tamanho compacto
+              className="group relative w-full h-64 rounded-xl overflow-hidden cursor-pointer border border-gray-800 hover:border-rcar-neon/60 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] focus:outline-none focus:ring-2 focus:ring-rcar-neon"
             >
-              {/* Background Image */}
+              {/* Imagem de Fundo */}
               <div className="absolute inset-0">
                 <img
                   src={category.image}
                   alt={category.title}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90" />
               </div>
 
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6 z-10">
-                <div className="mb-3 p-3 bg-black/40 backdrop-blur-md rounded-full text-rcar-neon border border-rcar-neon/30 group-hover:bg-rcar-neon group-hover:text-black transition-all duration-300 transform group-hover:scale-110 shadow-lg">
-                  {getIcon(category.iconName, "w-8 h-8")}
+              {/* Conteúdo Centralizado */}
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4 z-10">
+                <div className="mb-3 p-2.5 bg-black/40 backdrop-blur-md rounded-full text-rcar-neon border border-rcar-neon/30 group-hover:bg-rcar-neon group-hover:text-black transition-all duration-300 shadow-lg">
+                  {getIcon(category.iconName, "w-6 h-6")}
                 </div>
                 
-                <h3 className="font-display font-bold text-2xl text-white group-hover:text-rcar-neon transition-colors drop-shadow-md">
+                <h3 className="font-display font-bold text-xl text-white group-hover:text-rcar-neon transition-colors drop-shadow-md">
                   {category.title}
                 </h3>
                 
-                <div className="mt-3 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    <span className="inline-flex items-center gap-1.5 text-white text-[10px] font-bold uppercase tracking-widest bg-rcar-neon/20 backdrop-blur-sm px-3 py-1 rounded-sm border border-rcar-neon/50">
-                        Ver Detalhes <ArrowRight className="w-3 h-3" />
+                <div className="mt-2 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                    <span className="inline-flex items-center gap-1 text-white text-[10px] font-bold uppercase tracking-widest bg-rcar-neon/20 backdrop-blur-sm px-3 py-1 rounded-full border border-rcar-neon/50">
+                        Ver Detalhes
                     </span>
                 </div>
               </div>
@@ -95,8 +93,8 @@ const ServiceSection: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-           <p className="text-gray-500 text-xs md:text-sm">
+        <div className="mt-10 text-center">
+           <p className="text-gray-500 text-xs">
              <a href={CONTACT_INFO.whatsappUrl} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-rcar-neon transition-colors underline decoration-rcar-neon/30 underline-offset-4">Precisa de um orçamento personalizado?</a>
            </p>
         </div>
