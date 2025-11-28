@@ -6,18 +6,16 @@ export interface ServiceItem {
   isStartingPrice?: boolean;
 }
 
-export interface SubCategory {
-  title: string;
-  items: ServiceItem[];
-}
-
 export interface ServiceCategory {
   id: string;
   title: string;
-  iconName: string;
-  image: string;
+  iconName: string; // Using Lucide icon names as strings
   items: ServiceItem[];
-  subCategories?: SubCategory[];
+  subCategories?: {
+    title: string;
+    items: ServiceItem[];
+  }[];
+  image?: string;
 }
 
 export interface ChatMessage {
@@ -27,6 +25,6 @@ export interface ChatMessage {
 }
 
 export enum GeminiModel {
-  FLASH_LITE = 'gemini-2.5-flash-lite-latest',
+  FLASH_LITE = 'gemini-flash-lite-latest',
   FLASH_IMAGE = 'gemini-2.5-flash-image',
 }
