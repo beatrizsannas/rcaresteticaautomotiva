@@ -32,8 +32,8 @@ const CarVisualizer: React.FC = () => {
       const ai = new GoogleGenAI({ apiKey });
       
       // Extract base64 data
-      const base64Data = selectedImage.split(',')[1];
-      const mimeType = selectedImage.split(';')[0].split(':')[1];
+      const base64Data = selectedImage.split(',')[1] ?? '';
+      const mimeType = selectedImage.split(';')[0]?.split(':')[1] ?? 'image/png';
 
       // Using Gemini 2.5 Flash Image (Nano Banana) for editing/transformation
       // The prompt instructs the model to edit the provided image.
