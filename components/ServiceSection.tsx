@@ -48,7 +48,7 @@ const ServiceSection: React.FC = () => {
           </p>
         </div>
 
-        {/* 3-Column Grid Layout for Desktop (Side by Side) */}
+        {/* 3-Column Grid Layout for Desktop - More Minimalist/Compact Height */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {SERVICE_DATA.map((category, index) => (
             <motion.div
@@ -61,7 +61,7 @@ const ServiceSection: React.FC = () => {
               onKeyDown={(e) => handleKeyDown(e, category)}
               role="button"
               tabIndex={0}
-              className="group relative h-[220px] md:h-[280px] w-full rounded-2xl overflow-hidden cursor-pointer border border-gray-800 hover:border-rcar-neon/50 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] focus:outline-none focus:ring-2 focus:ring-rcar-neon focus:ring-offset-2 focus:ring-offset-black"
+              className="group relative h-[200px] md:h-[240px] w-full rounded-2xl overflow-hidden cursor-pointer border border-gray-800 hover:border-rcar-neon/50 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] focus:outline-none focus:ring-2 focus:ring-rcar-neon focus:ring-offset-2 focus:ring-offset-black"
             >
               {/* Background Image */}
               <div className="absolute inset-0">
@@ -71,23 +71,23 @@ const ServiceSection: React.FC = () => {
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                {/* Gradient Overlay - Bottom to Top for Grid Card */}
+                {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90" />
               </div>
 
               {/* Content - Centered for Minimalist Look */}
               <div className="absolute inset-0 p-6 flex flex-col justify-end md:justify-center items-center text-center">
-                <div className="mb-3 p-3 bg-rcar-neon/10 backdrop-blur-sm rounded-full text-rcar-neon border border-rcar-neon/20 group-hover:bg-rcar-neon group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] transform group-hover:-translate-y-2">
-                  {getIcon(category.iconName, "w-6 h-6 md:w-8 md:h-8")}
+                <div className="mb-3 p-2 md:p-3 bg-rcar-neon/10 backdrop-blur-sm rounded-full text-rcar-neon border border-rcar-neon/20 group-hover:bg-rcar-neon group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] transform group-hover:-translate-y-2">
+                  {getIcon(category.iconName, "w-5 h-5 md:w-6 md:h-6")}
                 </div>
                 
-                <h3 className="font-display font-bold text-2xl md:text-3xl text-white mb-1 group-hover:text-rcar-neon transition-colors leading-tight">
+                <h3 className="font-display font-bold text-xl md:text-2xl text-white mb-1 group-hover:text-rcar-neon transition-colors leading-tight">
                   {category.title}
                 </h3>
                 
                 <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100 flex flex-col items-center mt-2">
-                    <span className="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full border border-white/10">
+                    <span className="inline-flex items-center gap-2 text-white text-[10px] font-bold uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full border border-white/10">
                         Ver Tabela <ArrowRight className="w-3 h-3 text-rcar-neon" />
                     </span>
                 </div>
