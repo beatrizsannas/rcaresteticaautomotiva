@@ -1,97 +1,489 @@
 <!DOCTYPE html>
-<html lang="pt-BR" style="height: 100%;">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="R-Car Estética Automotiva - Serviços premium de lavagem, polimento, vitrificação e higienização em Cuiabá. Transformamos veículos em obras de arte." />
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="R-Car Estética Automotiva - Serviços premium de lavagem, polimento, vitrificação e higienização em Cuiabá.">
     <title>R-Car Estética Automotiva</title>
+    
+    <!-- Favicon -->
     <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2306b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>' type="image/svg+xml" />
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (Vanilla) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Configuration -->
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              rcar: {
-                black: '#0a0a0a',
-                dark: '#121212',
-                graphite: '#1f2937',
-                neon: '#06b6d4', // Cyan-500
-                accent: '#0891b2', // Cyan-600
-                glow: '#22d3ee', // Cyan-400
-              }
-            },
-            fontFamily: {
-              sans: ['Rajdhani', 'sans-serif'],
-              display: ['Orbitron', 'sans-serif'],
-            },
-            animation: {
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'float': 'float 6s ease-in-out infinite',
-            },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rcar: {
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            graphite: '#1f2937',
+                            neon: '#06b6d4', // Cyan-500
+                            accent: '#0891b2', // Cyan-600
+                            glow: '#22d3ee', // Cyan-400
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Rajdhani', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                    }
+                }
             }
-          }
         }
-      }
     </script>
+
+    <!-- Custom CSS -->
     <style>
-      html {
-        scroll-padding-top: 80px; /* Offset for fixed navbar */
-        height: 100%;
-      }
-      body {
-        background-color: #050505;
-        color: #ffffff;
-        overflow-x: hidden;
-        height: 100%;
-      }
-      .glass-panel {
-        background: rgba(30, 41, 59, 0.4);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .neon-text {
-        text-shadow: 0 0 10px rgba(6, 182, 212, 0.7);
-      }
-      .neon-border {
-        box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
-      }
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0a0a0a;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1f2937;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #06b6d4;
-      }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .neon-text {
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.7);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+        /* Utilitários para modal */
+        .modal-open {
+            overflow: hidden;
+        }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
   }
 }
 </script>
 </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<body class="bg-rcar-black text-white">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group cursor-pointer" onclick="window.scrollTo(0,0); return false;">
+                <i data-lucide="shield-check" class="w-8 h-8 text-rcar-neon group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-all"></i>
+                <div class="flex flex-col">
+                    <span class="font-display font-bold text-2xl tracking-wider text-white">
+                        R'<span class="text-rcar-neon">CAR</span>
+                    </span>
+                    <span class="text-[0.6rem] tracking-[0.2em] text-gray-400 -mt-1 uppercase">Estética Automotiva</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="text-sm font-medium text-gray-300 hover:text-rcar-neon transition-colors uppercase tracking-widest relative group">
+                    Serviços
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-rcar-neon transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-rcar-neon transition-colors uppercase tracking-widest relative group">
+                    Contato
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-rcar-neon transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="https://wa.me/5565981069894?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20R-Car." target="_blank" class="px-6 py-2 bg-transparent border border-rcar-neon text-rcar-neon font-bold uppercase tracking-wider text-xs hover:bg-rcar-neon hover:text-black transition-all duration-300 rounded-sm shadow-[0_0_10px_rgba(6,182,212,0.2)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]">
+                    Agendar
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none z-50 p-2">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden fixed top-[80px] left-0 w-full bg-black/95 backdrop-blur-xl border-b border-rcar-neon/20 shadow-2xl md:hidden">
+            <div class="flex flex-col p-6 space-y-6">
+                <a href="#services" class="mobile-link text-xl font-display font-bold text-white hover:text-rcar-neon transition-colors py-2 border-b border-gray-800">Serviços</a>
+                <a href="#contact" class="mobile-link text-xl font-display font-bold text-white hover:text-rcar-neon transition-colors py-2 border-b border-gray-800">Contato</a>
+                <a href="https://wa.me/5565981069894?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20R-Car." target="_blank" class="block w-full text-center py-4 bg-rcar-neon text-black font-bold uppercase tracking-widest rounded-sm cursor-pointer hover:bg-white transition-colors">Agendar Agora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative w-full flex items-center justify-center overflow-hidden bg-black" style="height: 100vh;">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2560&auto=format&fit=crop" alt="Carro Esportivo" class="w-full h-full object-cover object-center">
+            <!-- Overlays -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-transparent to-black/90"></div>
+            <!-- Glows -->
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-rcar-neon/10 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="inline-block mb-6 px-5 py-2 border border-rcar-neon/50 rounded-full bg-rcar-neon/5 backdrop-blur-md">
+                <span class="text-rcar-neon text-sm md:text-base font-bold tracking-[0.2em] uppercase">Excelência em cada detalhe</span>
+            </div>
+
+            <h1 class="font-display font-black text-5xl md:text-8xl lg:text-9xl text-white mb-4 md:mb-8 leading-tight neon-text">
+                R'CAR <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 text-4xl md:text-7xl lg:text-8xl font-sans font-light">ESTÉTICA AUTOMOTIVA</span>
+            </h1>
+
+            <p class="font-sans text-white text-lg md:text-2xl max-w-xl md:max-w-3xl mx-auto mb-10 md:mb-12 font-light tracking-wide leading-relaxed drop-shadow-lg shadow-black">
+                Transformamos veículos em obras de arte. Proteção, brilho e cuidado premium para quem exige o melhor.
+            </p>
+
+            <a href="#services" class="inline-block px-10 py-4 bg-rcar-neon text-black font-bold uppercase tracking-widest text-sm md:text-base rounded-sm hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.4)] cursor-pointer z-20">
+                Nossos Serviços
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-rcar-black relative">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="mb-12 text-center">
+                <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-3">
+                    NOSSOS <span class="text-rcar-neon">SERVIÇOS</span>
+                </h2>
+                <div class="w-12 h-1 bg-rcar-neon mx-auto rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></div>
+                <p className="mt-4 text-gray-400 text-sm max-w-xl mx-auto">
+                    Selecione uma categoria para visualizar detalhes e preços.
+                </p>
+            </div>
+
+            <!-- Grid Container for Services (JS Injected) -->
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Content will be injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal (Hidden by default) -->
+    <div id="service-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-sm transition-opacity duration-300 opacity-0" aria-hidden="true">
+        <div class="bg-gray-900 w-full max-w-2xl max-h-[85vh] rounded-xl border border-rcar-neon/30 flex flex-col overflow-hidden shadow-2xl relative transform transition-transform duration-300 scale-95" id="modal-content">
+            <!-- Close Button -->
+            <button id="modal-close" class="absolute top-4 right-4 p-2 bg-black/50 hover:bg-rcar-neon hover:text-black text-white rounded-full transition-colors z-30 backdrop-blur-md">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Modal Body (Injected by JS) -->
+            <div id="modal-body" class="flex flex-col h-full"></div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <footer id="contact" class="bg-black pt-20 pb-10 border-t border-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <h3 class="font-display font-bold text-3xl text-white">
+                        R'<span class="text-rcar-neon">CAR</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Elevando o padrão da estética automotiva. Cuidado, tecnologia e paixão por carros em cada serviço realizado.
+                    </p>
+                </div>
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white uppercase tracking-widest mb-4">Contato</h4>
+                    <div class="flex items-center gap-3 text-gray-400 group">
+                        <i data-lucide="phone" class="w-5 h-5 text-rcar-neon group-hover:animate-bounce"></i>
+                        <span>(65) 98106-9894</span>
+                    </div>
+                    <a href="https://instagram.com/rcar.estetica.automotiva" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-rcar-neon transition-colors">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                        <span>@rcar.estetica.automotiva</span>
+                    </a>
+                    <div class="flex items-center gap-3 text-gray-400">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-gray-600"></i>
+                        <span>Cuiabá - MT</span>
+                    </div>
+                </div>
+                <!-- CTA -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white uppercase tracking-widest mb-4">Agendamento</h4>
+                    <p class="text-gray-500 text-xs mb-4">Atendimento exclusivo com hora marcada.</p>
+                    <a href="https://wa.me/5565981069894?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20R-Car." target="_blank" class="inline-flex items-center gap-2 bg-rcar-neon text-black px-6 py-3 font-bold uppercase tracking-wider text-sm rounded-sm hover:bg-white transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                        Chamar no WhatsApp <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                <p>&copy; 2024 R-Car Estética Automotiva. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MAIN JAVASCRIPT LOGIC -->
+    <script>
+        // --- DATA ---
+        const SERVICE_DATA = [
+            {
+                id: 'cars',
+                title: 'Carros',
+                iconName: 'car',
+                image: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1000&auto=format&fit=crop',
+                items: [], 
+                subCategories: [
+                    {
+                        title: 'Lavagens',
+                        items: [
+                            { id: 'c-wash-1', name: 'Carro Compacto', price: 110 },
+                            { id: 'c-wash-2', name: 'Carro Hatch', price: 140 },
+                            { id: 'c-wash-3', name: 'Caminhonete', price: 170 },
+                        ]
+                    },
+                    {
+                        title: 'Polimento',
+                        items: [
+                            { id: 'c-pol-1', name: 'Polimento Comercial', price: 300 },
+                            { id: 'c-pol-2', name: 'Polimento Carro Preto', price: 350 },
+                            { id: 'c-pol-3', name: 'Enceramento Técnico', price: 100 },
+                        ]
+                    },
+                    {
+                        title: 'Tratamento de Farol',
+                        items: [
+                            { id: 'c-head-1', name: 'Recuperação de Farol', price: 180 },
+                            { id: 'c-head-2', name: 'Polimento de Farol', price: 100 },
+                        ]
+                    },
+                    {
+                        title: 'Higienização Interna',
+                        items: [
+                            { id: 'c-int-1', name: 'Lavagem dos Bancos', price: 180 },
+                            { id: 'c-int-2', name: 'Lavagem do Teto', price: 50 },
+                            { id: 'c-int-3', name: 'Lavagem do Carpete', price: 100 },
+                            { id: 'c-int-4', name: 'Americana Completo', price: 400 },
+                            { id: 'c-int-5', name: 'Completo (sem retirada de bancos)', price: 300 },
+                        ]
+                    },
+                    {
+                        title: 'Vidros',
+                        items: [
+                            { id: 'c-glass-1', name: 'Remoção de Chuva Ácida', price: 100 },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'motos',
+                title: 'Motos',
+                iconName: 'bike', 
+                image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1000&auto=format&fit=crop',
+                items: [],
+                subCategories: [
+                    {
+                        title: 'Lavagens & Detalhes',
+                        items: [
+                            { id: 'm-wash-1', name: 'Moto Simples', price: 50 },
+                            { id: 'm-wash-2', name: 'Detalhada', price: 150 },
+                            { id: 'm-head-1', name: 'Polimento de Farol', price: 50 },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'home',
+                title: 'Estofados Residenciais',
+                iconName: 'armchair',
+                image: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=1000&auto=format&fit=crop',
+                items: [
+                    { id: 'h-sofa', name: 'Sofá', price: 200, isStartingPrice: true },
+                    { id: 'h-mattress', name: 'Colchão', price: 150 },
+                    { id: 'h-armchair', name: 'Poltronas', price: 80 },
+                    { id: 'h-chair', name: 'Cadeira', price: 40 },
+                ]
+            }
+        ];
+
+        const WHATSAPP_URL = 'https://wa.me/5565981069894?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20R-Car.';
+
+        // --- NAVBAR LOGIC ---
+        const navbar = document.getElementById('navbar');
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black/80', 'backdrop-blur-lg', 'border-b', 'border-rcar-neon/20', 'py-2');
+                navbar.classList.remove('bg-transparent', 'py-6');
+            } else {
+                navbar.classList.remove('bg-black/80', 'backdrop-blur-lg', 'border-b', 'border-rcar-neon/20', 'py-2');
+                navbar.classList.add('bg-transparent', 'py-6');
+            }
+        });
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenu.classList.contains('hidden') ? 'menu' : 'x';
+            // Simple logic to swap icon using innerHTML re-render later, but easiest is to toggle visibility if we had two icons.
+            // Since we use Lucide vanilla, we re-render icons.
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- SERVICES RENDERING ---
+        const servicesGrid = document.getElementById('services-grid');
+
+        function renderServices() {
+            servicesGrid.innerHTML = SERVICE_DATA.map(category => `
+                <div class="group relative h-64 w-full rounded-lg overflow-hidden cursor-pointer border border-gray-800 hover:border-rcar-neon/50 transition-all duration-300" onclick="openModal('${category.id}')">
+                    <div class="absolute inset-0">
+                        <img src="${category.image}" alt="${category.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-50 group-hover:opacity-40">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-4 z-10">
+                        <div class="mb-4 p-3 bg-black/40 backdrop-blur-sm rounded-full text-rcar-neon border border-rcar-neon/20 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+                            <i data-lucide="${category.iconName}" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-white group-hover:text-rcar-neon transition-colors tracking-wide text-center">${category.title}</h3>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- MODAL LOGIC ---
+        const modal = document.getElementById('service-modal');
+        const modalBody = document.getElementById('modal-body');
+        const modalContent = document.getElementById('modal-content');
+        const modalClose = document.getElementById('modal-close');
+
+        function generateServiceItemHTML(item) {
+            return `
+            <div class="flex justify-between items-center py-3 border-b border-gray-800 hover:border-rcar-neon/50 transition-colors group">
+                <div class="flex flex-col">
+                    <span class="text-gray-300 font-medium group-hover:text-white transition-colors">${item.name}</span>
+                    ${item.description ? `<span class="text-gray-400 text-xs mt-1">${item.description}</span>` : ''}
+                </div>
+                <div class="flex flex-col items-end">
+                    ${item.isStartingPrice ? '<span class="text-[10px] text-gray-500 uppercase tracking-widest">A partir de</span>' : ''}
+                    <span class="text-rcar-neon font-display font-bold text-lg group-hover:drop-shadow-[0_0_5px_rgba(6,182,212,0.8)] transition-all">R$ ${item.price}</span>
+                </div>
+            </div>`;
+        }
+
+        window.openModal = function(categoryId) {
+            const category = SERVICE_DATA.find(c => c.id === categoryId);
+            if (!category) return;
+
+            // Prevent Body Scroll
+            document.body.classList.add('modal-open');
+
+            let itemsHTML = '';
+            
+            // Direct Items
+            if (category.items && category.items.length > 0) {
+                itemsHTML += '<div class="space-y-1">' + category.items.map(generateServiceItemHTML).join('') + '</div>';
+            }
+
+            // Subcategories
+            if (category.subCategories && category.subCategories.length > 0) {
+                itemsHTML += category.subCategories.map(sub => `
+                    <div class="space-y-3 mt-6">
+                        <h4 class="flex items-center gap-2 text-rcar-neon text-xs font-bold uppercase tracking-widest border-b border-gray-800 pb-2">${sub.title}</h4>
+                        <div class="space-y-1">${sub.items.map(generateServiceItemHTML).join('')}</div>
+                    </div>
+                `).join('');
+            }
+
+            modalBody.innerHTML = `
+                <!-- Header -->
+                <div class="relative h-48 shrink-0">
+                    <img src="${category.image}" class="w-full h-full object-cover opacity-70" alt="${category.title}">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-gray-900"></div>
+                    <div class="absolute bottom-4 left-6 flex items-center gap-3 z-20">
+                        <div class="p-2 bg-rcar-neon text-black rounded shadow-lg">
+                            <i data-lucide="${category.iconName}" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl text-white tracking-wider shadow-black drop-shadow-md">${category.title}</h3>
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="flex-1 overflow-y-auto p-6 custom-scrollbar bg-gray-900">
+                    ${itemsHTML}
+                    <div class="mt-8 pt-6 border-t border-gray-800 text-center sticky bottom-0 bg-gray-900 pb-2">
+                         <a href="${WHATSAPP_URL}" target="_blank" class="inline-flex items-center gap-2 bg-white/5 hover:bg-rcar-neon hover:text-black text-white px-6 py-3 rounded-sm font-bold text-xs uppercase tracking-widest transition-all duration-300 border border-white/10 hover:border-rcar-neon">
+                            Solicitar Orçamento <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden', 'opacity-0');
+            modal.classList.add('flex', 'opacity-100');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+            
+            // Refresh icons for new content
+            lucide.createIcons();
+        };
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.classList.remove('modal-open');
+            }, 300);
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderServices();
+            lucide.createIcons();
+        });
+
+    </script>
+</body>
 </html>
