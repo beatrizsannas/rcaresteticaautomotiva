@@ -4,94 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="R-Car Estética Automotiva - Serviços premium de lavagem, polimento, vitrificação e higienização em Cuiabá. Transformamos veículos em obras de arte." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rcarestetica.com.br/" />
+    <meta property="og:title" content="R-Car Estética Automotiva" />
+    <meta property="og:description" content="Catálogo de serviços premium de estética automotiva. Transformamos veículos em obras de arte." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200&auto=format&fit=crop" />
+
     <title>R-Car Estética Automotiva</title>
     <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2306b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>' type="image/svg+xml" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              rcar: {
-                black: '#0a0a0a',
-                dark: '#121212',
-                graphite: '#1f2937',
-                neon: '#06b6d4', // Cyan-500
-                accent: '#0891b2', // Cyan-600
-                glow: '#22d3ee', // Cyan-400
-              }
-            },
-            fontFamily: {
-              sans: ['Rajdhani', 'sans-serif'],
-              display: ['Orbitron', 'sans-serif'],
-            },
-            animation: {
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'float': 'float 6s ease-in-out infinite',
-            },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      html {
-        scroll-padding-top: 80px; /* Offset for fixed navbar */
-        height: 100%;
-      }
-      body {
-        background-color: #050505;
-        color: #ffffff;
-        overflow-x: hidden;
-        height: 100%;
-      }
-      .glass-panel {
-        background: rgba(30, 41, 59, 0.4);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .neon-text {
-        text-shadow: 0 0 10px rgba(6, 182, 212, 0.7);
-      }
-      .neon-border {
-        box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
-      }
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0a0a0a;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1f2937;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #06b6d4;
-      }
-    </style>
   <script type="importmap">
 {
   "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
