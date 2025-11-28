@@ -48,8 +48,8 @@ const ServiceSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Grid Layout - 3 Columns on Desktop, 1 on Mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* Robust Grid Layout - 3 Columns on Desktop, 1 on Mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {SERVICE_DATA.map((category, index) => (
             <motion.div
               key={category.id}
@@ -61,7 +61,7 @@ const ServiceSection: React.FC = () => {
               onKeyDown={(e) => handleKeyDown(e, category)}
               role="button"
               tabIndex={0}
-              className="group relative w-full aspect-[4/3] md:aspect-video rounded-xl overflow-hidden cursor-pointer border border-gray-800 hover:border-rcar-neon/60 transition-all duration-300 shadow-lg hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] focus:outline-none focus:ring-2 focus:ring-rcar-neon"
+              className="group relative w-full aspect-video rounded-xl overflow-hidden cursor-pointer border border-gray-800 hover:border-rcar-neon/60 transition-all duration-300 shadow-lg hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] focus:outline-none focus:ring-2 focus:ring-rcar-neon"
             >
               {/* Background Image */}
               <div className="absolute inset-0">
@@ -71,24 +71,23 @@ const ServiceSection: React.FC = () => {
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90" />
               </div>
 
-              {/* Content - Always Visible & Centered */}
+              {/* Content */}
               <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6 z-10">
-                <div className="mb-4 p-3 bg-black/50 backdrop-blur-md rounded-full text-rcar-neon border border-rcar-neon/30 group-hover:bg-rcar-neon group-hover:text-black transition-all duration-300 transform group-hover:scale-110 shadow-lg">
+                <div className="mb-3 p-3 bg-black/40 backdrop-blur-md rounded-full text-rcar-neon border border-rcar-neon/30 group-hover:bg-rcar-neon group-hover:text-black transition-all duration-300 transform group-hover:scale-110 shadow-lg">
                   {getIcon(category.iconName, "w-8 h-8")}
                 </div>
                 
-                <h3 className="font-display font-bold text-2xl md:text-3xl text-white group-hover:text-rcar-neon transition-colors drop-shadow-md">
+                <h3 className="font-display font-bold text-2xl text-white group-hover:text-rcar-neon transition-colors drop-shadow-md">
                   {category.title}
                 </h3>
                 
-                {/* Minimalist "View" Indicator */}
-                <div className="mt-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                    <span className="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-widest bg-rcar-neon/20 backdrop-blur-sm px-4 py-1.5 rounded-sm border border-rcar-neon/50">
-                        Ver Tabela <ArrowRight className="w-3 h-3" />
+                <div className="mt-3 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                    <span className="inline-flex items-center gap-1.5 text-white text-[10px] font-bold uppercase tracking-widest bg-rcar-neon/20 backdrop-blur-sm px-3 py-1 rounded-sm border border-rcar-neon/50">
+                        Ver Detalhes <ArrowRight className="w-3 h-3" />
                     </span>
                 </div>
               </div>
